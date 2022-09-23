@@ -1,0 +1,30 @@
+=== Generated schedule for mk_sample_design ===
+
+Method schedule
+---------------
+Method: ma_start
+Ready signal: rg_state == 2'd0
+Conflict-free: mav_stop
+Sequenced after: ma_wait
+Conflicts: ma_start
+ 
+Method: ma_wait
+Ready signal: (rg_state == 2'd0) || (rg_state == 2'd2)
+Conflict-free: ma_wait
+Sequenced before: ma_start, mav_stop
+ 
+Method: mav_stop
+Ready signal: rg_state == 2'd2
+Conflict-free: ma_start
+Sequenced after: ma_wait
+Conflicts: mav_stop
+ 
+Rule schedule
+-------------
+Rule: rl_add_one
+Predicate: (rg_state == 2'd1) && (rg_data <= 32'hDEADBEEF)
+Blocking rules: (none)
+ 
+Logical execution order: ma_wait, ma_start, mav_stop, rl_add_one
+
+================================================
