@@ -1,0 +1,8 @@
+# vscode cache
+.vscode/
+# build files
+build/
+build_bsim/
+
+# build objects
+*.bo
